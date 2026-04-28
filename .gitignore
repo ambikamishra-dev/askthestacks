@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.python-version
+
+# Tooling caches
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+
+# Secrets
+.env
+.env.*
+*.key
+*.pem
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Project artifacts 
+data/corpus/*.html
+data/index/
+*.faiss
+*.npy
+*.npz
+
+# Jupyter (in case we explore data)
+.ipynb_checkpoints/
+LEARNING.md
+
