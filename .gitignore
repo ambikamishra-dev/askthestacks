@@ -35,5 +35,5 @@ data/index/
 # Jupyter (in case we explore data)
 .ipynb_checkpoints/
 LEARNING.md
-scripts/try_fetch.py
+
 

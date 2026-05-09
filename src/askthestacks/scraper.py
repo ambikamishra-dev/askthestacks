@@ -2,6 +2,9 @@ import asyncio
 
 import httpx
 import structlog
+import re
+from askthestacks.schema import DatabaseEntry
+from selectolax.parser import HTMLParser, Node
 
 log = structlog.get_logger()
 
@@ -53,3 +56,78 @@ async def fetch_page(url: str) -> str:
                 raise
 
     raise RuntimeError("unreachable")
+
+_REDIRECT_CODE_RE = re.compile(r"/library/direct/\?([A-Za-z0-9_-]+)$")
+
+
+def _parse_row(row: Node) -> DatabaseEntry | None:
+    cells = row.css("td")
+    if len(cells) != 5:
+        return None
+
+    name_cell = cells[1]
+
+    link = name_cell.css_first("big a[href]")
+    if link is None:
+        return None
+
+    href = link.attributes.get("href", "")
+    if not href:
+        return None
+
+    match = _REDIRECT_CODE_RE.search(href)
+    if match is None:
+        return None
+    code = match.group(1)
+
+    name = link.text(strip=True)
+    if not name:
+        return None
+
+    subject_hint_node = name_cell.css_first("small")
+    subject_hint = None
+    if subject_hint_node is not None:
+        raw = subject_hint_node.text(strip=True)
+        if raw.startswith("(") and raw.endswith(")"):
+            subject_hint = raw[1:-1].strip() or None
+
+    dates = cells[2].text(strip=True) or None
+    coverage = cells[3].text(strip=True) or None
+    full_text = cells[4].text(strip=True) or None
+
+    try:
+        return DatabaseEntry(
+            code=code,
+            name=name,
+            subject_hint=subject_hint,
+            dates=dates,
+            coverage=coverage,
+            full_text=full_text,
+            url=href,
+        )
+    except Exception as e:
+        log.warning("row_validation_failed", name=name, url=href, error=str(e))
+        return None
+
+
+def parse_databases_html(html: str) -> list[DatabaseEntry]:
+    parser = HTMLParser(html)
+    rows = parser.css("tr")
+    log.info("parse_start", row_candidates=len(rows))
+
+    entries: list[DatabaseEntry] = []
+    seen_codes: set[str] = set()
+
+    for row in rows:
+        entry = _parse_row(row)
+        if entry is None:
+            continue
+        if entry.code in seen_codes:
+            log.debug("duplicate_row_skipped",
+                      code=entry.code, name=entry.name)
+            continue
+        seen_codes.add(entry.code)
+        entries.append(entry)
+
+    log.info("parse_complete", entries_extracted=len(entries))
+    return entries
