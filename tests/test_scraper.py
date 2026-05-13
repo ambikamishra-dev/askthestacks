@@ -2,7 +2,6 @@ import httpx
 import respx
 
 import pytest
-from pathlib import Path
 
 from askthestacks.scraper import parse_databases_html
 
@@ -61,14 +60,6 @@ async def test_fetch_page_retries_on_network_error_then_raises():
         await fetch_page(url)
 
     assert route.call_count == 2
-
-
-FIXTURE_PATH = Path(__file__).parent / "fixtures" / "databases_page.html"
-
-
-@pytest.fixture(scope="session")
-def fixture_html() -> str:
-    return FIXTURE_PATH.read_text(encoding="utf-8")
 
 
 @pytest.fixture(scope="session")
