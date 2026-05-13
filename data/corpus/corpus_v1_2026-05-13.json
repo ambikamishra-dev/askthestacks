@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "built_at": "2026-05-13T00:29:01.149228Z",
+  "built_at": "2026-05-13T04:23:06.552454Z",
   "source_url": "https://www.wiu.edu/libraries/databases/",
   "entries": [
     {
@@ -1740,6 +1740,314 @@
       "full_text": "selected",
       "url": "https://www.wiu.edu/library/direct/?WCDT",
       "embedding_text": "WorldCat Dissertations & Theses | Coverage: indexes 8.0+ million dissertations & theses in libraries worldwide | Dates: dates vary | Full text: selected"
+    },
+    {
+      "code": "CTV",
+      "name": "Counseling and Therapy in Video: Volumes I, II & III",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?CTV",
+      "embedding_text": "Counseling and Therapy in Video: Volumes I, II & III"
+    },
+    {
+      "code": "HSV",
+      "name": "Health & Society in Video",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?HSV",
+      "embedding_text": "Health & Society in Video"
+    },
+    {
+      "code": "OIV",
+      "name": "Music Online: Opera in Video",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?OIV",
+      "embedding_text": "Music Online: Opera in Video"
+    },
+    {
+      "code": "NEV",
+      "name": "Nursing Education in Video",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?NEV",
+      "embedding_text": "Nursing Education in Video"
+    },
+    {
+      "code": "RTV",
+      "name": "Rehabilitation Therapy in Video",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?RTV",
+      "embedding_text": "Rehabilitation Therapy in Video"
+    },
+    {
+      "code": "TIV",
+      "name": "Theatre in Video",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?TIV",
+      "embedding_text": "Theatre in Video"
+    },
+    {
+      "code": "EBL",
+      "name": "EBook Central",
+      "subject_hint": "ProQuest / Multi-disciplinary",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EBL",
+      "embedding_text": "EBook Central | Subject: ProQuest / Multi-disciplinary"
+    },
+    {
+      "code": "EBC",
+      "name": "eBook Collection",
+      "subject_hint": "EBSCO / Multi-disciplinary",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EBC",
+      "embedding_text": "eBook Collection | Subject: EBSCO / Multi-disciplinary"
+    },
+    {
+      "code": "EBCISL",
+      "name": "EBook Collections",
+      "subject_hint": "EBSCO (IL State Library Grant) / Multi-disciplinary",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EBCISL",
+      "embedding_text": "EBook Collections | Subject: EBSCO (IL State Library Grant) / Multi-disciplinary"
+    },
+    {
+      "code": "EBK",
+      "name": "Ebooks",
+      "subject_hint": "OCLC / Multi-disciplinary",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EBK",
+      "embedding_text": "Ebooks | Subject: OCLC / Multi-disciplinary"
+    },
+    {
+      "code": "JEBK",
+      "name": "eBooks/OA+",
+      "subject_hint": "JSTOR / Multi-disciplinary",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?JEBK",
+      "embedding_text": "eBooks/OA+ | Subject: JSTOR / Multi-disciplinary"
+    },
+    {
+      "code": "GVRL",
+      "name": "Gale EBooks",
+      "subject_hint": "Reference",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?GVRL",
+      "embedding_text": "Gale EBooks | Subject: Reference"
+    },
+    {
+      "code": "OLIB",
+      "name": "Open Library",
+      "subject_hint": "Internet Archive / Multi-disciplinary",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?OLIB",
+      "embedding_text": "Open Library | Subject: Internet Archive / Multi-disciplinary"
+    },
+    {
+      "code": "OHOBM",
+      "name": "Oxford Handbooks Online",
+      "subject_hint": "Business/Management",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?OHOBM",
+      "embedding_text": "Oxford Handbooks Online | Subject: Business/Management"
+    },
+    {
+      "code": "OSO",
+      "name": "Oxford Scholarship Online",
+      "subject_hint": "Multi-disciplinary",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?OSO",
+      "embedding_text": "Oxford Scholarship Online | Subject: Multi-disciplinary"
+    },
+    {
+      "code": "ENCY",
+      "name": "SAGE Reference",
+      "subject_hint": "Subject Encyclopedias",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?ENCY",
+      "embedding_text": "SAGE Reference | Subject: Subject Encyclopedias"
+    },
+    {
+      "code": "SLM",
+      "name": "Salem Press",
+      "subject_hint": "Reference",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?SLM",
+      "embedding_text": "Salem Press | Subject: Reference"
+    },
+    {
+      "code": "EBSP",
+      "name": "SpringerLink eBooks",
+      "subject_hint": "Multi-disciplinary",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EBSP",
+      "embedding_text": "SpringerLink eBooks | Subject: Multi-disciplinary"
+    },
+    {
+      "code": "WILEYOL",
+      "name": "Wiley Online Library",
+      "subject_hint": "Multi-disciplinary",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?WILEYOL",
+      "embedding_text": "Wiley Online Library | Subject: Multi-disciplinary"
+    },
+    {
+      "code": "EJD",
+      "name": "Duke Univ Press",
+      "subject_hint": "E-Journal Collection",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EJD",
+      "embedding_text": "Duke Univ Press | Subject: E-Journal Collection"
+    },
+    {
+      "code": "EJEM",
+      "name": "Emerald",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EJEM",
+      "embedding_text": "Emerald"
+    },
+    {
+      "code": "EJHI",
+      "name": "Highwire Press",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EJHI",
+      "embedding_text": "Highwire Press"
+    },
+    {
+      "code": "PUBMEDC",
+      "name": "PubMed Central",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?PUBMEDC",
+      "embedding_text": "PubMed Central"
+    },
+    {
+      "code": "EJS",
+      "name": "Sage Journals",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EJS",
+      "embedding_text": "Sage Journals"
+    },
+    {
+      "code": "EJSD",
+      "name": "Science Direct/Elsevier",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EJSD",
+      "embedding_text": "Science Direct/Elsevier"
+    },
+    {
+      "code": "EJSP",
+      "name": "SpringerLink",
+      "subject_hint": "E-Journal Collection",
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EJSP",
+      "embedding_text": "SpringerLink | Subject: E-Journal Collection"
+    },
+    {
+      "code": "EJT",
+      "name": "Taylor & Francis",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EJT",
+      "embedding_text": "Taylor & Francis"
+    },
+    {
+      "code": "EJW",
+      "name": "Wiley InterScience",
+      "subject_hint": null,
+      "subjects": [],
+      "dates": null,
+      "coverage": null,
+      "full_text": null,
+      "url": "https://www.wiu.edu/library/direct/?EJW",
+      "embedding_text": "Wiley InterScience"
     }
   ]
 }

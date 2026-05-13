@@ -11,7 +11,7 @@ from pathlib import Path
 import structlog
 
 from askthestacks.schema import Corpus
-from askthestacks.scraper import fetch_page, parse_databases_html
+from askthestacks.scraper import scrape_all
 
 
 WIU_DATABASES_URL = "https://www.wiu.edu/libraries/databases/"
@@ -39,12 +39,10 @@ async def build_corpus() -> int:
     today = datetime.now(UTC).strftime("%Y-%m-%d")
 
     try:
-        html = await fetch_page(WIU_DATABASES_URL)
+        entries = await scrape_all(WIU_DATABASES_URL)
     except Exception as e:
         log.error("scrape_failed", error=str(e), error_type=type(e).__name__)
         return 1
-
-    entries = parse_databases_html(html)
 
     if len(entries) < MIN_EXPECTED_ENTRIES:
         log.error(

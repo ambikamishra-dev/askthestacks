@@ -2,10 +2,21 @@ import httpx
 import respx
 
 import pytest
+from pathlib import Path
 
 from askthestacks.scraper import parse_databases_html
 
 from askthestacks.scraper import fetch_page
+from askthestacks.scraper import (
+    _parse_table_subcollection,
+    _parse_ul_subcollection,
+)
+ALEXANDER_FIXTURE = Path(__file__).parent / "fixtures" / \
+    "subcollection_alexander_street.html"
+EBOOKS_FIXTURE = Path(__file__).parent / "fixtures" / \
+    "subcollection_ebooks.html"
+EJOURNALS_FIXTURE = Path(__file__).parent / "fixtures" / \
+    "subcollection_ejournals.html"
 
 
 @pytest.mark.asyncio
@@ -109,4 +120,80 @@ class TestParseDatabasesHtml:
     def test_handles_garbage_html(self):
         result = parse_databases_html(
             "<html><body>not a database page</body></html>")
+        assert result == []
+
+
+ALEXANDER_FIXTURE = FIXTURE_DIR / "subcollection_alexander_street.html" if False else Path(
+    __file__).parent / "fixtures" / "subcollection_alexander_street.html"
+EBOOKS_FIXTURE = Path(__file__).parent / "fixtures" / \
+    "subcollection_ebooks.html"
+EJOURNALS_FIXTURE = Path(__file__).parent / "fixtures" / \
+    "subcollection_ejournals.html"
+
+
+class TestSubcollectionParsers:
+    def test_ul_parser_alexander_street(self):
+        html = ALEXANDER_FIXTURE.read_text(encoding="utf-8")
+        entries = _parse_ul_subcollection(html)
+        assert len(entries) == 6
+        codes = {e.code for e in entries}
+        assert "CTV" in codes
+        assert "HSV" in codes
+
+    def test_table_parser_ebooks(self):
+        html = EBOOKS_FIXTURE.read_text(encoding="utf-8")
+        entries = _parse_table_subcollection(html)
+        assert len(entries) == 13
+        by_code = {e.code: e for e in entries}
+        assert by_code["EBL"].name == "EBook Central"
+        assert "ProQuest" in (by_code["EBL"].subject_hint or "")
+
+    def test_table_parser_ejournals(self):
+        html = EJOURNALS_FIXTURE.read_text(encoding="utf-8")
+        entries = _parse_table_subcollection(html)
+        assert len(entries) == 10
+        by_code = {e.code: e for e in entries}
+        assert "EJEM" in by_code
+        assert by_code["EJEM"].name == "Emerald"
+
+    def test_ul_parser_returns_empty_for_garbage(self):
+        result = _parse_ul_subcollection("<html><body>nothing</body></html>")
+        assert result == []
+
+    def test_table_parser_returns_empty_for_garbage(self):
+        result = _parse_table_subcol
+
+
+class TestSubcollectionParsers:
+    def test_ul_parser_alexander_street(self):
+        html = ALEXANDER_FIXTURE.read_text(encoding="utf-8")
+        entries = _parse_ul_subcollection(html)
+        assert len(entries) == 6
+        codes = {e.code for e in entries}
+        assert "CTV" in codes
+        assert "HSV" in codes
+
+    def test_table_parser_ebooks(self):
+        html = EBOOKS_FIXTURE.read_text(encoding="utf-8")
+        entries = _parse_table_subcollection(html)
+        assert len(entries) == 13
+        by_code = {e.code: e for e in entries}
+        assert by_code["EBL"].name == "EBook Central"
+        assert "ProQuest" in (by_code["EBL"].subject_hint or "")
+
+    def test_table_parser_ejournals(self):
+        html = EJOURNALS_FIXTURE.read_text(encoding="utf-8")
+        entries = _parse_table_subcollection(html)
+        assert len(entries) == 10
+        by_code = {e.code: e for e in entries}
+        assert "EJEM" in by_code
+        assert by_code["EJEM"].name == "Emerald"
+
+    def test_ul_parser_returns_empty_for_garbage(self):
+        result = _parse_ul_subcollection("<html><body>nothing</body></html>")
+        assert result == []
+
+    def test_table_parser_returns_empty_for_garbage(self):
+        result = _parse_table_subcollection(
+            "<html><body>nothing</body></html>")
         assert result == []

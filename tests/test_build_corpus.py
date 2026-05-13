@@ -19,14 +19,16 @@ def tmp_output_dir(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
 
 
 @pytest.fixture
-def stub_fetch(monkeypatch: pytest.MonkeyPatch, fixture_html: str):
-    async def fake_fetch(_url: str) -> str:
-        return fixture_html
+def stub_scrape_all(monkeypatch: pytest.MonkeyPatch, fixture_html: str):
+    from askthestacks.scraper import parse_databases_html
 
-    monkeypatch.setattr("scripts.build_corpus.fetch_page", fake_fetch)
+    async def fake_scrape_all(_url: str):
+        return parse_databases_html(fixture_html)
+
+    monkeypatch.setattr("scripts.build_corpus.scrape_all", fake_scrape_all)
 
 
-def test_build_corpus_writes_three_files(tmp_output_dir: Path, stub_fetch):
+def test_build_corpus_writes_three_files(tmp_output_dir: Path, stub_scrape_all):
     exit_code = asyncio.run(build_corpus())
     assert exit_code == 0
 
@@ -39,7 +41,7 @@ def test_build_corpus_writes_three_files(tmp_output_dir: Path, stub_fetch):
     assert latest.exists()
 
 
-def test_build_corpus_latest_matches_versioned(tmp_output_dir: Path, stub_fetch):
+def test_build_corpus_latest_matches_versioned(tmp_output_dir: Path, stub_scrape_all):
     asyncio.run(build_corpus())
 
     versioned = list(tmp_output_dir.glob("corpus_v1_*.json"))[0]
@@ -48,7 +50,7 @@ def test_build_corpus_latest_matches_versioned(tmp_output_dir: Path, stub_fetch)
     assert versioned.read_text() == latest.read_text()
 
 
-def test_build_corpus_report_has_entry_count(tmp_output_dir: Path, stub_fetch):
+def test_build_corpus_report_has_entry_count(tmp_output_dir: Path, stub_scrape_all):
     asyncio.run(build_corpus())
 
     report_path = list(tmp_output_dir.glob("build_report_*.json"))[0]
@@ -62,10 +64,10 @@ def test_build_corpus_report_has_entry_count(tmp_output_dir: Path, stub_fetch):
 def test_build_corpus_sanity_check_fails_on_too_few_entries(
     tmp_output_dir: Path, monkeypatch: pytest.MonkeyPatch
 ):
-    async def fake_fetch_tiny(_url: str) -> str:
-        return "<html><body>nothing here</body></html>"
+    async def fake_scrape_tiny(_url: str):
+        return []
 
-    monkeypatch.setattr("scripts.build_corpus.fetch_page", fake_fetch_tiny)
+    monkeypatch.setattr("scripts.build_corpus.scrape_all", fake_scrape_tiny)
 
     exit_code = asyncio.run(build_corpus())
     assert exit_code == 2
