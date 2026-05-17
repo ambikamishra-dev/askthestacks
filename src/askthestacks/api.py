@@ -19,6 +19,10 @@ import logging
 import time
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
+from fastapi import FastAPI, HTTPException, Query, Request, status
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 
 import structlog
 from fastapi import FastAPI, HTTPException, Query, Request, status
@@ -197,6 +201,26 @@ def create_app(state_factory=None) -> FastAPI:
             client=get_remote_address(request),
         )
         return response
+
+# ---- Static file serving ----
+
+    static_dir = Path(__file__).parent / "static"
+
+    @app.get("/", include_in_schema=False)
+    async def root() -> FileResponse:
+        index_path = static_dir / "index.html"
+        if not index_path.exists():
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="UI not found",
+            )
+        return FileResponse(index_path, media_type="text/html")
+
+    app.mount(
+        "/static",
+        StaticFiles(directory=static_dir),
+        name="static",
+    )
 
     # ---- Endpoints ----
 

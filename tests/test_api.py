@@ -245,3 +245,20 @@ class TestRateLimiting:
             assert "retry-after" in {h.lower() for h in r.headers.keys()}
             body = r.json()
             assert body["error"] == "rate_limit_exceeded"
+
+
+class TestStaticServing:
+    def test_root_serves_html(self, client: TestClient):
+        r = client.get("/")
+        assert r.status_code == 200
+        assert "text/html" in r.headers["content-type"]
+        assert "AskTheStacks" in r.text
+
+    def test_root_includes_search_form(self, client: TestClient):
+        r = client.get("/")
+        assert 'id="search-form"' in r.text
+        assert 'id="search-input"' in r.text
+
+    def test_static_mount_returns_404_for_missing(self, client: TestClient):
+        r = client.get("/static/does-not-exist.css")
+        assert r.status_code == 404
