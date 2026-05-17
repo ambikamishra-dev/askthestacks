@@ -16,6 +16,8 @@ dependencies = [
     "selectolax>=0.3.21",
     "pydantic>=2.7",
     "structlog>=24.1",
+    "sentence-transformers>=3.0",
+    "faiss-cpu>=1.8",
 ]
 
 [project.optional-dependencies]

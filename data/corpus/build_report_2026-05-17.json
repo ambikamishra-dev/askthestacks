@@ -1,0 +1,11 @@
+{
+  "built_at": "2026-05-17T03:00:04.433691+00:00",
+  "source_url": "https://www.wiu.edu/libraries/databases/",
+  "entry_count": 186,
+  "entries_with_subject_hint": 94,
+  "entries_with_dates": 156,
+  "entries_with_coverage": 158,
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "embedding_dim": 384,
+  "index_type": "IndexFlatIP"
+}
