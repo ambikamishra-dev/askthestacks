@@ -18,6 +18,10 @@ dependencies = [
     "structlog>=24.1",
     "sentence-transformers>=3.0",
     "faiss-cpu>=1.8",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "slowapi>=0.1.9",
+    "pydantic-settings>=2.5",
 ]
 
 [project.optional-dependencies]

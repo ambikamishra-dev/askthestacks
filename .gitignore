@@ -31,6 +31,8 @@ data/index/
 *.faiss
 *.npy
 *.npz
+.env
+.env.local
 
 # Jupyter (in case we explore data)
 .ipynb_checkpoints/
