@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "description": "Hand-rated evaluation set. Each query was manually tested. The top 5 results from the live system were judged by the operator against three relevance levels: relevant (clearly the right database), partial (related but secondary), not_relevant (false positive). Metrics derived from these judgments rather than from pre-supposed 'expected' codes.",
+  "queries": [
+    {
+      "id": "ptsd-veterans",
+      "query": "PTSD in veterans",
+      "domain": "health",
+      "rated_results": [
+        {"rank": 1, "code": "PTSD", "relevance": "relevant"},
+        {"rank": 2, "code": "RTV", "relevance": "partial"},
+        {"rank": 3, "code": "CTV", "relevance": "partial"},
+        {"rank": 4, "code": "EJS", "relevance": "not_relevant"},
+        {"rank": 5, "code": "PUBMED", "relevance": "relevant"}
+      ],
+      "notes": "PTSDpubs as top hit at 0.72. Two therapy-video databases as partial matches make sense. EJS is a false positive. PubMed at #5 is appropriate."
+    },
+    {
+      "id": "pregnant-medication",
+      "query": "I am writing a thesis on pregnant women and medicine effects",
+      "domain": "health",
+      "rated_results": [
+        {"rank": 1, "code": "PUBMED", "relevance": "relevant"},
+        {"rank": 2, "code": "PTSD", "relevance": "not_relevant"},
+        {"rank": 3, "code": "PUBMEDC", "relevance": "relevant"},
+        {"rank": 4, "code": "WSI", "relevance": "partial"},
+        {"rank": 5, "code": "MEDWS", "relevance": "relevant"}
+      ],
+      "notes": "Three medical databases in top 5 — strong. PTSD at #2 is a false positive (model matched 'pregnant women' weakly to health/medicine theme). Women's Studies International is a partial match (women's health adjacency)."
+    },
+    {
+      "id": "slave-trade-history",
+      "query": "I'm working on my history thesis about the slave trade",
+      "domain": "history",
+      "rated_results": [
+        {"rank": 1, "code": "SATW", "relevance": "relevant"},
+        {"rank": 2, "code": "BTC", "relevance": "relevant"},
+        {"rank": 3, "code": "HIS", "relevance": "relevant"},
+        {"rank": 4, "code": "MOO", "relevance": "not_relevant"},
+        {"rank": 5, "code": "HSUS", "relevance": "partial"}
+      ],
+      "notes": "Top 3 are bullseyes. Mergent Archives at #4 is a false positive (company histories ≠ slave trade history). Historical Statistics partially relevant for demographic data."
+    },
+    {
+      "id": "music-alzheimers",
+      "query": "Music therapy and Alzheimer's patients",
+      "domain": "interdisciplinary",
+      "rated_results": [
+        {"rank": 1, "code": "RTV", "relevance": "partial"},
+        {"rank": 2, "code": "EJS", "relevance": "partial"},
+        {"rank": 3, "code": "CTV", "relevance": "partial"},
+        {"rank": 4, "code": "PTSD", "relevance": "not_relevant"},
+        {"rank": 5, "code": "IIMP", "relevance": "partial"}
+      ],
+      "notes": "No single database covers music + Alzheimer's. System surfaces partial matches across therapy (rank 1, 3) and music (rank 5) dimensions. PTSDpubs at #4 is a false positive — the model over-weighted 'Health/Medicine' theme."
+    },
+    {
+      "id": "civil-society-primary-sources",
+      "query": "I need primary sources for my political science paper on civil society",
+      "domain": "social-science",
+      "rated_results": [
+        {"rank": 1, "code": "WSM", "relevance": "relevant"},
+        {"rank": 2, "code": "CRSJ", "relevance": "relevant"},
+        {"rank": 3, "code": "BTC", "relevance": "relevant"},
+        {"rank": 4, "code": "HRS", "relevance": "relevant"},
+        {"rank": 5, "code": "OLIB", "relevance": "partial"}
+      ],
+      "notes": "Strongest result in the eval set. 4 of 5 are direct hits. Model correctly decomposed 'civil society' to civil rights, social movements, social justice — true cross-disciplinary semantic match."
+    },
+    {
+      "id": "k12-education",
+      "query": "Looking for databases on K-12 education research",
+      "domain": "education",
+      "rated_results": [
+        {"rank": 1, "code": "TRC", "relevance": "relevant"},
+        {"rank": 2, "code": "PQ", "relevance": "partial"},
+        {"rank": 3, "code": "ENCY", "relevance": "partial"},
+        {"rank": 4, "code": "LEJCA", "relevance": "partial"},
+        {"rank": 5, "code": "WCDT", "relevance": "partial"}
+      ],
+      "notes": "Teacher Reference Center as top hit is exactly right. The remaining 4 are partial — broader databases that include education research but aren't K-12 specific. Notable: ERIC (the obvious K-12 education database in WIU's collection) didn't surface in top 5 — that's a known gap to investigate."
+    }
+  ]
+}

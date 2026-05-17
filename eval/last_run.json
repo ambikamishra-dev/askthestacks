@@ -1,0 +1,146 @@
+[
+  {
+    "id": "ptsd-veterans",
+    "query": "PTSD in veterans",
+    "domain": "health",
+    "drift": false,
+    "live_codes": [
+      "PTSD",
+      "RTV",
+      "CTV",
+      "EJS",
+      "PUBMED"
+    ],
+    "unrated_live_codes": [],
+    "grades": [
+      1.0,
+      0.5,
+      0.5,
+      0.0,
+      1.0
+    ],
+    "precision_at_5": 0.6,
+    "hit_at_1": 1.0,
+    "ndcg_at_5": 0.9313301799442211
+  },
+  {
+    "id": "pregnant-medication",
+    "query": "I am writing a thesis on pregnant women and medicine effects",
+    "domain": "health",
+    "drift": false,
+    "live_codes": [
+      "PUBMED",
+      "PTSD",
+      "PUBMEDC",
+      "WSI",
+      "MEDWS"
+    ],
+    "unrated_live_codes": [],
+    "grades": [
+      1.0,
+      0.0,
+      1.0,
+      0.5,
+      1.0
+    ],
+    "precision_at_5": 0.7,
+    "hit_at_1": 1.0,
+    "ndcg_at_5": 0.8959722661926243
+  },
+  {
+    "id": "slave-trade-history",
+    "query": "I'm working on my history thesis about the slave trade",
+    "domain": "history",
+    "drift": false,
+    "live_codes": [
+      "SATW",
+      "BTC",
+      "HIS",
+      "MOO",
+      "HSUS"
+    ],
+    "unrated_live_codes": [],
+    "grades": [
+      1.0,
+      1.0,
+      1.0,
+      0.0,
+      0.5
+    ],
+    "precision_at_5": 0.7,
+    "hit_at_1": 1.0,
+    "ndcg_at_5": 0.9906609666436669
+  },
+  {
+    "id": "music-alzheimers",
+    "query": "Music therapy and Alzheimer's patients",
+    "domain": "interdisciplinary",
+    "drift": false,
+    "live_codes": [
+      "RTV",
+      "EJS",
+      "CTV",
+      "PTSD",
+      "IIMP"
+    ],
+    "unrated_live_codes": [],
+    "grades": [
+      0.5,
+      0.5,
+      0.5,
+      0.0,
+      0.5
+    ],
+    "precision_at_5": 0.4,
+    "hit_at_1": 1.0,
+    "ndcg_at_5": 0.9828920819566879
+  },
+  {
+    "id": "civil-society-primary-sources",
+    "query": "I need primary sources for my political science paper on civil society",
+    "domain": "social-science",
+    "drift": false,
+    "live_codes": [
+      "WSM",
+      "CRSJ",
+      "BTC",
+      "HRS",
+      "OLIB"
+    ],
+    "unrated_live_codes": [],
+    "grades": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.5
+    ],
+    "precision_at_5": 0.9,
+    "hit_at_1": 1.0,
+    "ndcg_at_5": 1.0
+  },
+  {
+    "id": "k12-education",
+    "query": "Looking for databases on K-12 education research",
+    "domain": "education",
+    "drift": false,
+    "live_codes": [
+      "TRC",
+      "PQ",
+      "ENCY",
+      "LEJCA",
+      "WCDT"
+    ],
+    "unrated_live_codes": [],
+    "grades": [
+      1.0,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "precision_at_5": 0.6,
+    "hit_at_1": 1.0,
+    "ndcg_at_5": 1.0
+  }
+]
