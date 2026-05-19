@@ -216,6 +216,20 @@ def create_app(state_factory=None) -> FastAPI:
             )
         return FileResponse(index_path, media_type="text/html")
 
+    @app.get("/widget", include_in_schema=False)
+    async def widget_preview() -> FileResponse:
+        """Demo page showing the embeddable widget inside a host page.
+
+        For WIU IT to verify the widget works before embedding into their CMS.
+        """
+        preview_path = static_dir / "widget_preview.html"
+        if not preview_path.exists():
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Widget preview not found",
+            )
+        return FileResponse(preview_path, media_type="text/html")
+
     app.mount(
         "/static",
         StaticFiles(directory=static_dir),
