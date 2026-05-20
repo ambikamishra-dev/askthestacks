@@ -37,4 +37,10 @@ data/index/
 .ipynb_checkpoints/
 LEARNING.md
 
+# Local-only — handover doc lives outside git
+docs/
+
+# Demo preview with institution-specific data — local only
+src/askthestacks/static/widget_preview.html
+
 

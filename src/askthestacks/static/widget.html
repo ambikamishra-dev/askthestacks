@@ -1,5 +1,5 @@
 <!--
-AskTheStacks embeddable search widget.
+WIU Database Finder embeddable search widget.
 
 To use:
 1. Set the API_BASE constant below to your deployed backend URL.
@@ -11,22 +11,20 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
 
 <div class="ats-widget" id="ats-widget-root">
     <header class="ats-header">
-        <h2 class="ats-title">AskTheStacks</h2>
+        <h2 class="ats-title">WIU Database Finder</h2>
         <p class="ats-tagline">Describe your topic in plain English. We'll find the right databases.</p>
     </header>
 
-    <form class="ats-search-form" id="ats-search-form" autocomplete="off">
-        <input
-            type="text"
-            class="ats-search-input"
-            id="ats-search-input"
-            placeholder="e.g., PTSD in veterans, climate change policy, African American history"
-            aria-label="Search query"
-            required
-            maxlength="500"
-        >
-        <button type="submit" class="ats-search-button" id="ats-search-button">Search</button>
-    </form>
+    <div class="ats-search-form">
+            <input
+                type="text"
+                class="ats-search-input"
+                id="ats-search-input"
+                placeholder="Describe your research topic — e.g., PTSD in veterans, climate change policy"
+                aria-label="Search query"
+                maxlength="500"
+            >
+        </div>
 
     <div class="ats-status" id="ats-status" role="status" aria-live="polite"></div>
 
@@ -42,6 +40,30 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
                 <span class="ats-example-query" data-q="African American history">African American history</span>
             </div>
         </div>
+        <!--
+        =========================================================
+        CONFIGURATION — replace with your institution's contact info
+        =========================================================
+        -->
+        <footer class="ats-librarian-footer">
+            <h3 class="ats-librarian-title">Need more help?</h3>
+            <p class="ats-librarian-intro">Our librarians can help you refine your search or find specific resources. Walk in or reach out.</p>
+            <div class="ats-librarian-grid">
+                <div class="ats-librarian-card">
+                    <strong>Librarian Name</strong>
+                    <a href="mailto:librarian1@example.edu">librarian1@example.edu</a>
+                </div>
+                <div class="ats-librarian-card">
+                    <strong>Librarian Name</strong>
+                    <a href="mailto:librarian2@example.edu">librarian2@example.edu</a>
+                </div>
+            </div>
+            <p class="ats-librarian-detail">
+                <strong>Phone:</strong> (000) 000-0000<br>
+                <strong>Location:</strong> Library Name, Floor X<br>
+                <strong>Office hours:</strong> Monday–Friday, 9am – 5pm
+            </p>
+        </footer>
     </div>
 </div>
 
@@ -94,17 +116,15 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
     }
 
     .ats-search-form {
-        display: flex;
-        gap: 8px;
         margin-bottom: 16px;
     }
 
     .ats-search-input {
-        flex: 1;
-        padding: 14px 16px;
-        font-size: 16px;
+        width: 100%;
+        padding: 18px 20px;
+        font-size: 17px;
         font-family: inherit;
-        border: 1px solid var(--ats-color-border);
+        border: 2px solid var(--ats-color-border);
         border-radius: var(--ats-radius);
         background: var(--ats-color-surface);
         box-shadow: var(--ats-shadow-sm);
@@ -116,28 +136,6 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
         outline: none;
         border-color: var(--ats-color-accent);
         box-shadow: 0 0 0 3px rgba(91, 33, 182, 0.15);
-    }
-
-    .ats-search-button {
-        padding: 14px 24px;
-        font-size: 16px;
-        font-family: inherit;
-        font-weight: 500;
-        color: white;
-        background: var(--ats-color-accent);
-        border: none;
-        border-radius: var(--ats-radius);
-        cursor: pointer;
-        transition: background 0.15s;
-    }
-
-    .ats-search-button:hover:not(:disabled) {
-        background: var(--ats-color-accent-hover);
-    }
-
-    .ats-search-button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
     }
 
     .ats-status {
@@ -165,7 +163,7 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
         background: var(--ats-color-surface);
         border: 1px solid var(--ats-color-border);
         border-radius: var(--ats-radius);
-        padding: 16px 20px;
+        padding: 12px 16px;
         box-shadow: var(--ats-shadow-sm);
         transition: box-shadow 0.15s;
     }
@@ -177,13 +175,13 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
     .ats-result-header {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
-        gap: 12px;
-        margin-bottom: 8px;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 4px;
     }
 
     .ats-result-title {
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 600;
         color: var(--ats-color-accent);
         text-decoration: none;
@@ -195,10 +193,10 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
     }
 
     .ats-result-score {
-        font-size: 12px;
+        font-size: 11px;
         color: var(--ats-color-text-muted);
         font-variant-numeric: tabular-nums;
-        padding: 4px 8px;
+        padding: 2px 6px;
         background: var(--ats-color-bg);
         border-radius: 4px;
         white-space: nowrap;
@@ -207,23 +205,29 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
     .ats-result-meta {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 8px;
-        font-size: 13px;
+        gap: 6px;
+        margin-bottom: 4px;
+        font-size: 12px;
         color: var(--ats-color-text-muted);
     }
 
     .ats-result-meta span {
-        padding: 2px 8px;
+        padding: 1px 6px;
         background: var(--ats-color-bg);
         border-radius: 4px;
     }
 
     .ats-result-coverage {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--ats-color-text);
         margin: 0;
-        line-height: 1.5;
+        line-height: 1.45;
+    }
+
+    .ats-results {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
     .ats-empty-state {
@@ -293,6 +297,60 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
         margin-bottom: 8px;
     }
 
+    .ats-librarian-footer {
+        margin-top: 24px;
+        padding: 20px 24px;
+        background: var(--ats-color-surface);
+        border: 1px solid var(--ats-color-border);
+        border-left: 4px solid var(--ats-color-accent);
+        border-radius: var(--ats-radius);
+    }
+
+    .ats-librarian-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 6px;
+        color: var(--ats-color-text);
+    }
+
+    .ats-librarian-intro {
+        font-size: 14px;
+        color: var(--ats-color-text-muted);
+        margin: 0 0 16px;
+        line-height: 1.5;
+    }
+
+    .ats-librarian-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .ats-librarian-card {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: 14px;
+    }
+
+    .ats-librarian-card a {
+        color: var(--ats-color-accent);
+        text-decoration: none;
+        font-size: 13px;
+    }
+
+    .ats-librarian-card a:hover {
+        text-decoration: underline;
+    }
+
+    .ats-librarian-detail {
+        font-size: 13px;
+        color: var(--ats-color-text);
+        margin: 0;
+        line-height: 1.7;
+    }
+
     @media (max-width: 640px) {
         .ats-widget {
             padding: 16px 0;
@@ -302,19 +360,16 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
             font-size: 20px;
         }
 
-        .ats-search-form {
-            flex-direction: column;
-        }
-
-        .ats-search-button {
-            width: 100%;
-        }
-
         .ats-result-header {
             flex-direction: column;
             gap: 4px;
         }
+
+        .ats-librarian-grid {
+            grid-template-columns: 1fr;
+        }
     }
+
 </style>
 
 <script>
@@ -333,9 +388,7 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
         const root = document.getElementById("ats-widget-root");
         if (!root) return;
 
-        const form = root.querySelector("#ats-search-form");
         const input = root.querySelector("#ats-search-input");
-        const button = root.querySelector("#ats-search-button");
         const statusEl = root.querySelector("#ats-status");
         const results = root.querySelector("#ats-results");
 
@@ -428,7 +481,6 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
 
             setStatus("Searching…");
             renderSkeleton();
-            button.disabled = true;
 
             try {
                 const url = `${API_BASE}/api/search?q=${encodeURIComponent(trimmed)}&k=${TOP_K}`;
@@ -459,8 +511,6 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
                 if (err.name === "AbortError") return;
                 setStatus("Couldn't reach the search service.", "error");
                 renderError("Network error", "network");
-            } finally {
-                button.disabled = false;
             }
         }
 
@@ -473,10 +523,12 @@ All CSS classes are prefixed with `ats-` to avoid conflicts with host page style
             scheduleSearch(e.target.value);
         });
 
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            clearTimeout(debounceTimer);
-            performSearch(input.value);
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                clearTimeout(debounceTimer);
+                performSearch(input.value);
+            }
         });
 
         root.querySelectorAll(".ats-example-query").forEach(el => {
