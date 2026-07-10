@@ -18,20 +18,6 @@ FAISS vector search over WIU's database catalog
 Top 5–7 most relevant databases with names, descriptions, and direct links
 ```
 
-## Status
-
-🚧 **In active development — Day 1 of 7.** Targeting first demo May 3, 2026.
-
-| Component               | Status      |
-| ----------------------- | ----------- |
-| Corpus scraper & schema | In progress |
-| Subject enrichment      | Planned     |
-| Embedding pipeline      | Planned     |
-| FAISS retrieval         | Planned     |
-| FastAPI backend         | Planned     |
-| Embeddable frontend     | Planned     |
-| Load testing (k6)       | Planned     |
-| Docker + CI             | Planned     |
 
 ## Tech Stack
 
