@@ -33,34 +33,13 @@ in under 200ms.
 ## Architecture
 
 Three layers, each with a single responsibility:
-                ┌──────────────────────────────┐
-                │  Vanilla JS Widget           │
-                │  (single HTML file, no deps) │
-                └──────────────┬───────────────┘
-                               │  HTTP GET /api/search
-                               ▼
-                ┌──────────────────────────────┐
-                │  FastAPI Service             │
-                │  - Two-tier rate limiting    │
-                │  - LRU query cache           │
-                │  - Structured logging        │
-                │  - Pydantic validation       │
-                │  - CORS via env var          │
-                └──────────────┬───────────────┘
-                               │
-                               ▼
-                ┌──────────────────────────────┐
-                │  Retriever                   │
-                │  bge-small-en-v1.5 embedder  │
-                │  FAISS IndexFlatIP (cosine)  │
-                └──────────────┬───────────────┘
-                               │
-                               ▼
-                ┌──────────────────────────────┐
-                │  Corpus (186 entries)        │
-                │  Built by async scraper      │
-                │  Versioned JSON + FAISS bin  │
-                └──────────────────────────────┘
+
+```mermaid
+flowchart TD
+    A["Vanilla JS Widget<br/>Single HTML file, no build step"] -->|HTTP GET /api/search| B["FastAPI Service<br/>Two-tier rate limiting · LRU cache<br/>Structured logging · Pydantic validation<br/>CORS via env var"]
+    B --> C["Retriever<br/>bge-small-en-v1.5 embedder<br/>FAISS IndexFlatIP (cosine)"]
+    C --> D["Corpus 186 entries<br/>Async scraper · Versioned JSON + FAISS binary"]
+```
 
 ### Data pipeline
 
@@ -265,36 +244,38 @@ rebuilding their site and it will be integrated then.
 
 ## Repository structure
 
+```
 askthestacks/
 ├── src/askthestacks/
-│ ├── schema.py # Pydantic models — corpus contract
-│ ├── scraper.py # Async httpx + selectolax
-│ ├── embedder.py # bge-small wrapper
-│ ├── index.py # FAISS build/save/load/search
-│ ├── retrieval.py # Retriever — glues embedder + index + corpus
-│ ├── api.py # FastAPI app, lifespan, middleware, endpoints
-│ ├── api_models.py # Request/response Pydantic models
-│ ├── api_cache.py # LRU query cache
-│ ├── config.py # pydantic-settings — env-driven config
-│ └── static/
-│ └── index.html # Widget (HTML + CSS + JS in one file)
+│   ├── schema.py         # Pydantic models — corpus contract
+│   ├── scraper.py        # Async httpx + selectolax
+│   ├── embedder.py       # bge-small wrapper
+│   ├── index.py          # FAISS build/save/load/search
+│   ├── retrieval.py      # Retriever — glues embedder + index + corpus
+│   ├── api.py            # FastAPI app, lifespan, middleware, endpoints
+│   ├── api_models.py     # Request/response Pydantic models
+│   ├── api_cache.py      # LRU query cache
+│   ├── config.py         # pydantic-settings — env-driven config
+│   └── static/
+│       └── index.html    # Widget (HTML + CSS + JS in one file)
 ├── scripts/
-│ ├── build_corpus.py # Orchestrator: scrape → embed → index → save
-│ ├── eval.py # Hand-rated eval harness with drift detection
-│ └── serve.py # Uvicorn launcher
+│   ├── build_corpus.py   # Orchestrator: scrape → embed → index → save
+│   ├── eval.py           # Hand-rated eval harness with drift detection
+│   └── serve.py          # Uvicorn launcher
 ├── eval/
-│ ├── queries.json # Hand-rated golden set
-│ └── last_run.json # Latest eval report
+│   ├── queries.json      # Hand-rated golden set
+│   └── last_run.json     # Latest eval report
 ├── tests/
-│ ├── fixtures/ # Frozen HTML for deterministic parser tests
-│ ├── test_schema.py
-│ ├── test_scraper.py
-│ ├── test_embedder.py
-│ ├── test_index.py
-│ ├── test_retrieval.py
-│ ├── test_build_corpus.py
-│ └── test_api.py
+│   ├── fixtures/         # Frozen HTML for deterministic parser tests
+│   ├── test_schema.py
+│   ├── test_scraper.py
+│   ├── test_embedder.py
+│   ├── test_index.py
+│   ├── test_retrieval.py
+│   ├── test_build_corpus.py
+│   └── test_api.py
 ├── data/
-│ ├── corpus/ # Versioned JSON output
-│ └── index/ # FAISS binary + id_map.json
+│   ├── corpus/           # Versioned JSON output
+│   └── index/            # FAISS binary + id_map.json
 └── pyproject.toml
+```
